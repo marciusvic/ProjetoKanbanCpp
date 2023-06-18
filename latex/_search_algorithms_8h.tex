@@ -1,0 +1,66 @@
+\hypertarget{_search_algorithms_8h}{}\doxysection{Search\+Algorithms.\+h File Reference}
+\label{_search_algorithms_8h}\index{SearchAlgorithms.h@{SearchAlgorithms.h}}
+
+
+Declaração das funções Search\+Algorithms Função de busca binária recursiva. Realiza uma busca binária recursiva em um array ordenado, procurando por um determinado valor.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_search_algorithms_8h_a4781f946b2e2a953d91eab834e08247d}\label{_search_algorithms_8h_a4781f946b2e2a953d91eab834e08247d}} 
+{\footnotesize template$<$typename T $>$ }\\int {\bfseries recursive\+Binary\+Search} (T arr\mbox{[}$\,$\mbox{]}, T target, int left, int right)
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \mbox{\hyperlink{_search_algorithms_8h_ad7643968172772d8b1a80fb6fb7b2a17}{iterative\+Binary\+Search}} (T arr\mbox{[}$\,$\mbox{]}, T target, int left, int right)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaração das funções Search\+Algorithms Função de busca binária recursiva. Realiza uma busca binária recursiva em um array ordenado, procurando por um determinado valor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & O array no qual a busca será realizada. \\
+\hline
+{\em target} & O valor a ser buscado. \\
+\hline
+{\em left} & O índice esquerdo do intervalo de busca. \\
+\hline
+{\em right} & O índice direito do intervalo de busca. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O índice do elemento encontrado, ou -\/1 se o elemento não for encontrado. 
+\end{DoxyReturn}
+
+
+Definition in file \mbox{\hyperlink{_search_algorithms_8h_source}{Search\+Algorithms.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_search_algorithms_8h_ad7643968172772d8b1a80fb6fb7b2a17}\label{_search_algorithms_8h_ad7643968172772d8b1a80fb6fb7b2a17}} 
+\index{SearchAlgorithms.h@{SearchAlgorithms.h}!iterativeBinarySearch@{iterativeBinarySearch}}
+\index{iterativeBinarySearch@{iterativeBinarySearch}!SearchAlgorithms.h@{SearchAlgorithms.h}}
+\doxysubsubsection{\texorpdfstring{iterativeBinarySearch()}{iterativeBinarySearch()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int iterative\+Binary\+Search (\begin{DoxyParamCaption}\item[{T}]{arr\mbox{[}$\,$\mbox{]},  }\item[{T}]{target,  }\item[{int}]{left,  }\item[{int}]{right }\end{DoxyParamCaption})}
+
+Função de busca binária iterativa.
+
+Realiza uma busca binária iterativa em um array ordenado, procurando por um determinado valor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arr} & O array no qual a busca será realizada. \\
+\hline
+{\em target} & O valor a ser buscado. \\
+\hline
+{\em left} & O índice esquerdo do intervalo de busca. \\
+\hline
+{\em right} & O índice direito do intervalo de busca. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+O índice do elemento encontrado, ou -\/1 se o elemento não for encontrado. 
+\end{DoxyReturn}
