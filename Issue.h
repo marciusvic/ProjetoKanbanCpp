@@ -1,118 +1,78 @@
+/**
+ * @file Issue.h
+ * @brief Declaração da classe Issue
+*/
+
 #ifndef ISSUE_H
 #define ISSUE_H
 
-#include <string>
+#include "semiIssue.h"
 
 /**
- * @file Issue.h
- * @brief Declaração da classe Issue.
+ * @class Issue
+ * @brief Classe que representa uma tarefa completa
+ * @details Esta classe herda da classe semiIssue e representa uma tarefa completa com ID, título, descrição, prioridade, dificuldade, data e quadro de tarefas.
  */
 
-class Issue {
+class Issue : public semiIssue {
 private:
-    int id;                     // ID da Issue
-    std::string title;          // Título da Issue
-    std::string description;    // Descrição da Issue
-    int priority;               // Prioridade da Issue
-    int difficulty;             // Dificuldade da Issue
-    std::string date;           // Data da Issue
+    int priority; /**< prioridade da tarefa */
+    int difficult; /**< dificuldade da tarefa */
+    std::string date; /**< data da tarefa */
+    std::string board; /**< quadro de tarefas da tarefa */
 
 public:
     /**
-     * Construtor da classe Issue.
-     * 
-     * @param id O ID da Issue.
-     * @param title O título da Issue.
-     * @param description A descrição da Issue.
-     * @param priority A prioridade da Issue.
-     * @param difficulty A dificuldade da Issue.
-     * @param date A data da Issue.
+     * @brief Construtor da classe Issue
+     * @param id id da tarefa
+     * @param title título da tarefa
+     * @param description descrição da tarefa
+     * @param priority prioridade da tarefa
+     * @param difficult dificuldade da tarefa
+     * @param date data da tarefa
+     * @param board quadro de tarefas da tarefa
      */
-    Issue(int id, const std::string& title, const std::string& description, int priority, int difficulty, const std::string& date);
-
+    Issue(int id, std::string title, std::string description, int priority, int difficult, std::string date, std::string board);
     /**
-     * Obtém o ID da Issue.
-     * 
-     * @return O ID da Issue.
+     * @brief getter da prioridade da tarefa
      */
-    int getId() const;
-
+    int getPriority();
     /**
-     * Obtém o título da Issue.
-     * 
-     * @return O título da Issue.
+     * @brief getter da dificuldade da tarefa
      */
-    std::string getTitle() const;
-
+    int getDifficult();
     /**
-     * Obtém a descrição da Issue.
-     * 
-     * @return A descrição da Issue.
+     * @brief getter da data da tarefa
      */
-    std::string getDescription() const;
-
+    std::string getDate();
     /**
-     * Obtém a prioridade da Issue.
-     * 
-     * @return A prioridade da Issue.
+     * @brief getter do quadro de tarefas da tarefa
      */
-    int getPriority() const;
-
+    std::string getBoard();
     /**
-     * Obtém a dificuldade da Issue.
-     * 
-     * @return A dificuldade da Issue.
-     */
-    int getDifficulty() const;
-
-    /**
-     * Obtém a data da Issue.
-     * 
-     * @return A data da Issue.
-     */
-    std::string getDate() const;
-
-    /**
-     * Define o ID da Issue.
-     * 
-     * @param id O ID da Issue.
-     */
-    void setId(int id);
-
-    /**
-     * Define o título da Issue.
-     * 
-     * @param title O título da Issue.
-     */
-    void setTitle(const std::string& title);
-
-    /**
-     * Define a descrição da Issue.
-     * 
-     * @param description A descrição da Issue.
-     */
-    void setDescription(const std::string& description);
-
-    /**
-     * Define a prioridade da Issue.
-     * 
-     * @param priority A prioridade da Issue.
+     * @brief setter da prioridade da tarefa
+     * @param priority nova prioridade da tarefa
      */
     void setPriority(int priority);
-
     /**
-     * Define a dificuldade da Issue.
-     * 
-     * @param difficulty A dificuldade da Issue.
+     * @brief setter da dificuldade da tarefa
+     * @param difficult nova dificuldade da tarefa
      */
-    void setDifficulty(int difficulty);
-
+    void setDifficult(int difficult);
     /**
-     * Define a data da Issue.
-     * 
-     * @param date A data da Issue.
+     * @brief setter da data da tarefa
+     * @param date nova data da tarefa
      */
-    void setDate(const std::string& date);
+    void setDate(std::string date);
+    /**
+     * @brief setter do quadro de tarefas da tarefa
+     * @param board novo quadro de tarefas da tarefa
+     */
+    void setBoard(std::string board);
+    /**
+     * @brief função que imprime os dados da tarefa, herdado da classe semiIssue.
+     */
+    void printIssue();
 };
 
 #endif

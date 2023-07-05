@@ -1,22 +1,16 @@
 all: main
 
-main: main.o Board.o Issue.o LinkedList.o SearchAlgorithms.o SortingAlgorithms.o Stack.o
-	g++ -o main main.o Board.o Issue.o LinkedList.o SearchAlgorithms.o SortingAlgorithms.o Stack.o
+main: main.o semiIssue.o Issue.o Board.o Strings.o
+	g++ -o main main.o semiIssue.o Issue.o Board.o Strings.o
 
-Board.o: Board.cpp Board.h
-	g++ -c Board.cpp
+semiIssue: semiIssue.cpp semiIssue.h
+	g++ -c semiIssue.cpp
 
 Issue.o: Issue.cpp Issue.h
 	g++ -c Issue.cpp
 
-LinkedList.o: LinkedList.cpp LinkedList.h
-	g++ -c LinkedList.cpp
+Board.o: Board.cpp Board.h
+	g++ -c Board.cpp
 
-SearchAlgorithms.o: SearchAlgorithms.cpp SearchAlgorithms.h
-	g++ -c SearchAlgorithms.cpp
-
-SortingAlgorithms.o: SortingAlgorithms.cpp SortingAlgorithms.h
-	g++ -c SortingAlgorithms.cpp
-
-Stack.o: Stack.cpp Stack.h
-	g++ -c Stack.cpp
+Strings.o: Strings.cpp Strings.h
+	g++ -c Strings.cpp
