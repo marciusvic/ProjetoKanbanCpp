@@ -9,8 +9,8 @@
  */
 
 #include <iostream>
-#include "Board.h"
-#include "strings.h"
+#include "../include/Board.h"
+#include "../include/strings.h"
 
 /**
  * @brief Função principal

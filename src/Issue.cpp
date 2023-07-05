@@ -3,7 +3,7 @@
  * @brief Implementação das funções da classe Issue
 */
 
-#include "Issue.h"
+#include "../include/Issue.h"
 #include <iostream>
 
 /**

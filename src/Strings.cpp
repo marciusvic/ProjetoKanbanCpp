@@ -3,7 +3,7 @@
  * @brief Implementação da função que chama strings.
 */
 
-#include "Strings.h"
+#include "../include/Strings.h"
 #include <iostream>
 
 void strings(int num){

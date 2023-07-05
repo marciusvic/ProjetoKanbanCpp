@@ -3,7 +3,7 @@
  * @brief Implementação das funções da classe semiIssue
 */
 
-#include "semiIssue.h"
+#include "../include/semiIssue.h"
 #include <iostream>
 
 /**

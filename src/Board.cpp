@@ -3,7 +3,7 @@
  * @brief Implementação das funções da classe Board
  */
 
-#include "Board.h"
+#include "../include/Board.h"
 #include <iostream>
 #include <fstream>
 
@@ -673,7 +673,7 @@ void Board::printBoard(){
  * @brief Função responsável por salvar o board em um arquivo txt, ele salva primeiro o tamanho de cada vector, e após isso salva os dados em sequencia.
 */
 void Board::salvaBoard(){
-    std::ofstream arquivoSaida("quadroPrincipal.txt");
+    std::ofstream arquivoSaida("../data/quadroPrincipal.txt");
 
     if (arquivoSaida.is_open()){
         arquivoSaida << backlogIssues.size() << "\n";
@@ -746,7 +746,7 @@ void Board::salvaBoard(){
  * @brief Função responsável por carregar o board de um arquivo txt, ele carrega primeiro o tamanho de cada vector, e após isso carrega os dados em sequencia.
 */
 int Board::carregaBoard(){
-    std::ifstream arquivoEntrada("quadroPrincipal.txt");
+    std::ifstream arquivoEntrada("../data/quadroPrincipal.txt");
     int maiorId = 0;
     int numIssues;
     int id;
