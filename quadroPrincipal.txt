@@ -1,11 +1,19 @@
 1
+2
+ISS 2
+ISS 2 DESC
+2
+2
+05/07
+Backlog
+1
 1
 ISS 1
 ISS 1 DESC
 1
 1
-10/07/2022
-Backlog
+05/07
+Fazendo
 0
 0
 0

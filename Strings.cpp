@@ -1,3 +1,8 @@
+/**
+ * @file Strings.cpp
+ * @brief Implementação da função que chama strings.
+*/
+
 #include "Strings.h"
 #include <iostream>
 
@@ -32,10 +37,11 @@ void strings(int num){
     if (num == 10){
         std::cout << "Para qual board deseja mover a issue?" << std::endl;
         std::cout << "1 - Backlog" << std::endl;
-        std::cout << "2 - Em Análise" << std::endl;
-        std::cout << "3 - Testando" << std::endl;
-        std::cout << "4 - Em Piloto" << std::endl;
-        std::cout << "5 - Entregue" << std::endl;
+        std::cout << "2 - Fazendo" << std::endl;
+        std::cout << "3 - Em Análise" << std::endl;
+        std::cout << "4 - Testando" << std::endl;
+        std::cout << "5 - Em Piloto" << std::endl;
+        std::cout << "6 - Entregue" << std::endl;
     }
     if (num == 11){
         std::cout << "Digite o número da issue que deseja editar: " << std::endl;

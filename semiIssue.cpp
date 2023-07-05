@@ -1,3 +1,8 @@
+/**
+ * @file semiIssue.cpp
+ * @brief Implementação das funções da classe semiIssue
+*/
+
 #include "semiIssue.h"
 #include <iostream>
 

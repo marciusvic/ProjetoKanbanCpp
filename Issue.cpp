@@ -1,3 +1,8 @@
+/**
+ * @file Issue.cpp
+ * @brief Implementação das funções da classe Issue
+*/
+
 #include "Issue.h"
 #include <iostream>
 

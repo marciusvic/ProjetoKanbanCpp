@@ -18,7 +18,7 @@
  */
 
 int main(){
-    int id;
+    int id; 
     std::string title;
     std::string description;
     int priority;
@@ -107,15 +107,18 @@ int main(){
                 board = "Backlog";
             }
             if (opcao == 2){
-                board = "Em Análise";
+                board = "Fazendo";
             }
             if (opcao == 3){
-                board = "Testando";
+                board = "Em Análise";
             }
             if (opcao == 4){
-                board = "Em Piloto";
+                board = "Testando";
             }
             if (opcao == 5){
+                board = "Em Piloto";
+            }
+            if (opcao == 6){
                 board = "Entregue";
             }
             quadroPrincipal.alteraPropriedadeBoard(id, board);

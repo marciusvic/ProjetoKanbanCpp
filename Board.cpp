@@ -1,17 +1,36 @@
+/**
+ * @file Board.cpp
+ * @brief Implementação das funções da classe Board
+ */
+
 #include "Board.h"
 #include <iostream>
 #include <fstream>
+
+/**
+ * @brief Função responsável por criar uma nova tarefa, e adiciona-la a backlogIssues(no primeiro momento)
+ */
 
 void Board::createIssue(int id, std::string title, std::string description, int priority, int difficult, std::string date, std::string board){
     Issue issue(id, title, description, priority, difficult, date, board);
     this->backlogIssues.push_back(issue);
 }
-
+/**
+ * @brief Função responsável por adicionar uma tarefa a um determinado vetor
+ * @param issue Tarefa a ser adicionada
+ * @param vector Vetor(template) a ser adicionado a tarefa
+*/
 template <typename T>
 void Board::addIssue(Issue &issue, T &vector){
     vector.push_back(issue);
 }
-
+/**
+ * @brief Função de busca binária
+ * @param id Id da tarefa a ser buscada
+ * @param vector Vetor(template) a ser buscado
+ * @param left Posição inicial do vetor
+ * @param right Posição final do vetor
+*/
 template <typename T>
 int Board::buscaBinaria(int id, T &vector, int left, int right){
     if (right >= left){
@@ -30,7 +49,11 @@ int Board::buscaBinaria(int id, T &vector, int left, int right){
 
     return -1;
 }
-
+/**
+ * @brief Função responsável por remover uma tarefa de um determinado vetor
+ * @param id Id da tarefa a ser removida
+ * @param vector Vetor(template) a ser removido a tarefa
+*/
 template <typename T>
 void Board::removeIssue(int id, T &vector){
     int index = buscaBinaria(id, vector, 0, vector.size() - 1);
@@ -38,11 +61,19 @@ void Board::removeIssue(int id, T &vector){
         vector.erase(vector.begin() + index);
     }
 }
-
+/**
+ * @brief Função responsável por apagar uma tarefa de todos os vetores, ele chama a função removeIssue para cada vetor, e assim apagando a tarefa de todos os vetores, ele faz uma dupla verificação, visto que na buscabinária ele busca o id, e se nao encontrar ele retorna -1, já aqui é garantido que ele não vai retornar -1, pois ele já passou por todos os vetores, e se não encontrou, é porque não existe.
+ * @param id Id da tarefa a ser apagada
+*/
 void Board::apagaIssue(int id){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             removeIssue(id, backlogIssues);
+        }
+    }
+    for (int i = 0; i < fazendoIssues.size(); i++){
+        if (fazendoIssues[i].getId() == id){
+            removeIssue(id, fazendoIssues);
         }
     }
     for (int i = 0; i < emAnaliseIssues.size(); i++){
@@ -66,7 +97,11 @@ void Board::apagaIssue(int id){
         }
     }
 }
-
+/**
+ * @brief Função responsável por editar uma tarefa, novamente ele faz uma varredura pelo id da tarefa em cada board, e se encontrar ele edita a tarefa, ele faz uma verificação de qual opção o usuário escolheu, e assim editando a tarefa.
+ * @param id Id da tarefa a ser editada
+ * @param opcao Opção escolhida pelo usuário
+*/
 void Board::editaIssue(int id, int opcao){
     std::string title;
     std::string description;
@@ -101,6 +136,37 @@ void Board::editaIssue(int id, int opcao){
                 std::cout << "Digite a nova data: " << std::endl;
                 std::cin >> date;
                 backlogIssues[i].setDate(date);
+            }
+        }
+    }
+    for (int i = 0; i < fazendoIssues.size(); i++){
+        if (fazendoIssues[i].getId() == id){
+            if (opcao == 1){
+                std::cout << "Digite o novo título: " << std::endl;
+                std::cin.ignore();
+                std::getline(std::cin, title);
+                fazendoIssues[i].setTitle(title);
+            }
+            if (opcao == 2){
+                std::cout << "Digite a nova descrição: " << std::endl;
+                std::cin.ignore();
+                std::getline(std::cin, description);
+                fazendoIssues[i].setDescription(description);
+            }
+            if (opcao == 3){
+                std::cout << "Digite a nova prioridade: " << std::endl;
+                std::cin >> priority;
+                fazendoIssues[i].setPriority(priority);
+            }
+            if (opcao == 4){
+                std::cout << "Digite a nova dificuldade: " << std::endl;
+                std::cin >> difficult;
+                fazendoIssues[i].setDifficult(difficult);
+            }
+            if (opcao == 5){
+                std::cout << "Digite a nova data: " << std::endl;
+                std::cin >> date;
+                fazendoIssues[i].setDate(date);
             }
         }
     }
@@ -229,11 +295,18 @@ void Board::editaIssue(int id, int opcao){
         }
     }
 }
-
+/**
+ * @brief Função responsável por detalhar uma tarefa, ele faz uma varredura pelo id da tarefa em cada board, e se encontrar ele "printa" a tarefa usando a função de polimorfismo.
+*/
 void Board::detalhaIssue(int id){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             backlogIssues[i].printIssue();
+        }
+    }
+    for (int i = 0; i < fazendoIssues.size(); i++){
+        if (fazendoIssues[i].getId() == id){
+            fazendoIssues[i].printIssue();
         }
     }
     for (int i = 0; i < emAnaliseIssues.size(); i++){
@@ -257,7 +330,11 @@ void Board::detalhaIssue(int id){
         }
     }
 }
-
+/**
+ * @brief Função de ordenação bubbleSort para organizar as tarefas por prioridade ou dificuldade.
+ * @param vector Vetor(template) a ser ordenado
+ * @param compareFn Função de comparação
+*/
 template <typename T>
 void Board::bubbleSort(std::vector<Issue> &vector, T compareFn){
     int n = vector.size();
@@ -278,7 +355,11 @@ void Board::bubbleSort(std::vector<Issue> &vector, T compareFn){
         }
     }
 }
-
+/**
+ * @brief Função de ordenação insertionSort para organizar as tarefas por prioridade ou dificuldade.
+ * @param vector Vetor(template) a ser ordenado
+ * @param compareFn Função de comparação
+*/
 template <typename T>
 void Board::insertionSort(std::vector<Issue> &vector, T compareFn){
     int n = vector.size();
@@ -296,19 +377,24 @@ void Board::insertionSort(std::vector<Issue> &vector, T compareFn){
         vector[j + 1] = key;
     }
 }
-
+/**
+ * @brief Função responsável por organizar as tarefas por prioridade, ele chama a função bubbleSort para cada vetor, e assim organizando as tarefas por prioridade.
+*/
 void Board::organizeByPriority(){
     auto compareFn = [](Issue &a, Issue &b){
         return a.getPriority() > b.getPriority();
     };
 
     bubbleSort(backlogIssues, compareFn);
+    bubbleSort(fazendoIssues, compareFn);
     bubbleSort(emAnaliseIssues, compareFn);
     bubbleSort(testandoIssues, compareFn);
     bubbleSort(emPilotoIssues, compareFn);
     bubbleSort(entregueIssues, compareFn);
 }
-
+/**
+ * @brief Função responsável por organizar as tarefas por dificuldade, ele chama a função insertionSort para cada vetor, e assim organizando as tarefas por dificuldade.
+*/
 void Board::organizeByDifficulty()
 {
     auto compareFn = [](Issue &a, Issue &b){
@@ -316,15 +402,22 @@ void Board::organizeByDifficulty()
     };
 
     insertionSort(backlogIssues, compareFn);
+    insertionSort(fazendoIssues, compareFn);
     insertionSort(emAnaliseIssues, compareFn);
     insertionSort(testandoIssues, compareFn);
     insertionSort(emPilotoIssues, compareFn);
     insertionSort(entregueIssues, compareFn);
 }
-
+/**
+ * @brief Função responsável por alterar a propriedade de uma tarefa, para muda-la de board, em primeiro passo ele verifica em cada vector se a propriedade "board" de cada Issue condiz com a board que ele está, se nao condizer, ele verifica o board que pertence e colocar no vector correto, essa função será usada dentro da função que altera a propriedade board de uma Issue.
+*/
 void Board::mudaBoard(){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getBoard() != "Backlog"){
+            if (backlogIssues[i].getBoard() == "Fazendo"){
+                fazendoIssues.push_back(backlogIssues[i]);
+                removeIssue(backlogIssues[i].getId(), backlogIssues);
+            }
             if (backlogIssues[i].getBoard() == "Em Análise"){
                 emAnaliseIssues.push_back(backlogIssues[i]);
                 removeIssue(backlogIssues[i].getId(), backlogIssues);
@@ -343,10 +436,38 @@ void Board::mudaBoard(){
             }
         }
     }
+    for (int i = 0; i < fazendoIssues.size(); i++){
+        if (fazendoIssues[i].getBoard() != "Fazendo"){
+            if (fazendoIssues[i].getBoard() == "Backlog"){
+                backlogIssues.push_back(fazendoIssues[i]);
+                removeIssue(fazendoIssues[i].getId(), fazendoIssues);
+            }
+            if (fazendoIssues[i].getBoard() == "Em Análise"){
+                emAnaliseIssues.push_back(fazendoIssues[i]);
+                removeIssue(fazendoIssues[i].getId(), fazendoIssues);
+            }
+            if (fazendoIssues[i].getBoard() == "Testando"){
+                testandoIssues.push_back(fazendoIssues[i]);
+                removeIssue(fazendoIssues[i].getId(), fazendoIssues);
+            }
+            if (fazendoIssues[i].getBoard() == "Em Piloto"){
+                emPilotoIssues.push_back(fazendoIssues[i]);
+                removeIssue(fazendoIssues[i].getId(), fazendoIssues);
+            }
+            if (fazendoIssues[i].getBoard() == "Entregue"){
+                entregueIssues.push_back(fazendoIssues[i]);
+                removeIssue(fazendoIssues[i].getId(), fazendoIssues);
+            }
+        }
+    }
     for (int i = 0; i < emAnaliseIssues.size(); i++){
         if (emAnaliseIssues[i].getBoard() != "Em Análise"){
             if (emAnaliseIssues[i].getBoard() == "Backlog"){
                 backlogIssues.push_back(emAnaliseIssues[i]);
+                removeIssue(emAnaliseIssues[i].getId(), emAnaliseIssues);
+            }
+            if (emAnaliseIssues[i].getBoard() == "Fazendo"){
+                fazendoIssues.push_back(emAnaliseIssues[i]);
                 removeIssue(emAnaliseIssues[i].getId(), emAnaliseIssues);
             }
             if (emAnaliseIssues[i].getBoard() == "Testando"){
@@ -369,6 +490,10 @@ void Board::mudaBoard(){
                 backlogIssues.push_back(testandoIssues[i]);
                 removeIssue(testandoIssues[i].getId(), testandoIssues);
             }
+            if (testandoIssues[i].getBoard() == "Fazendo"){
+                fazendoIssues.push_back(testandoIssues[i]);
+                removeIssue(testandoIssues[i].getId(), testandoIssues);
+            }
             if (testandoIssues[i].getBoard() == "Em Análise"){
                 emAnaliseIssues.push_back(testandoIssues[i]);
                 removeIssue(testandoIssues[i].getId(), testandoIssues);
@@ -387,6 +512,10 @@ void Board::mudaBoard(){
         if (emPilotoIssues[i].getBoard() != "Em Piloto"){
             if (emPilotoIssues[i].getBoard() == "Backlog"){
                 backlogIssues.push_back(emPilotoIssues[i]);
+                removeIssue(emPilotoIssues[i].getId(), emPilotoIssues);
+            }
+            if (emPilotoIssues[i].getBoard() == "Fazendo"){
+                fazendoIssues.push_back(emPilotoIssues[i]);
                 removeIssue(emPilotoIssues[i].getId(), emPilotoIssues);
             }
             if (emPilotoIssues[i].getBoard() == "Em Análise"){
@@ -409,6 +538,10 @@ void Board::mudaBoard(){
                 backlogIssues.push_back(entregueIssues[i]);
                 removeIssue(entregueIssues[i].getId(), entregueIssues);
             }
+            if (entregueIssues[i].getBoard() == "Fazendo"){
+                fazendoIssues.push_back(entregueIssues[i]);
+                removeIssue(entregueIssues[i].getId(), entregueIssues);
+            }
             if (entregueIssues[i].getBoard() == "Em Análise"){
                 emAnaliseIssues.push_back(entregueIssues[i]);
                 removeIssue(entregueIssues[i].getId(), entregueIssues);
@@ -424,11 +557,22 @@ void Board::mudaBoard(){
         }
     }
 }
-
+/**
+ * @brief Essa função é a responsável de alterar a propriedade 'board' de uma Issue específica, ele chama a função mudaBoard() após alterar a propriedade, organizando assim cada issue em sua respectiva board.
+ * @param id Id da tarefa a ser alterada
+ * @param novaBoard Nova board a ser alterada
+*/
 int Board::alteraPropriedadeBoard(int id, std::string novaBoard){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             backlogIssues[i].setBoard(novaBoard);
+            mudaBoard();
+            return 0;
+        }
+    }
+    for (int i = 0; i < fazendoIssues.size(); i++){
+        if (fazendoIssues[i].getId() == id){
+            fazendoIssues[i].setBoard(novaBoard);
             mudaBoard();
             return 0;
         }
@@ -463,9 +607,13 @@ int Board::alteraPropriedadeBoard(int id, std::string novaBoard){
     }
     return 0;
 }
-
+/**
+ * @brief Função responsável por printar o board, ele printa cada vetor, e assim printando o board inteiro.
+*/
 void Board::printBoard(){
     std::cout << "== Backlog =="
+              << "\t"
+              << "== Fazendo =="
               << "\t"
               << "== Em Análise =="
               << "\t"
@@ -475,11 +623,18 @@ void Board::printBoard(){
               << "\t"
               << "== Entregue ==" << std::endl;
 
-    int maxIssues = std::max(backlogIssues.size(), std::max(emAnaliseIssues.size(), std::max(testandoIssues.size(), std::max(emPilotoIssues.size(), entregueIssues.size()))));
+    int maxIssues = std::max(backlogIssues.size(), std::max(fazendoIssues.size(), std::max(emAnaliseIssues.size(), std::max(testandoIssues.size(), std::max(emPilotoIssues.size(), entregueIssues.size())))));
 
     for (int i = 0; i < maxIssues; i++){
         if (i < backlogIssues.size()){
             std::cout << "#" << backlogIssues[i].getId() << " " << backlogIssues[i].getTitle() << "\t\t";
+        }
+        else{
+            std::cout << "\t\t";
+        }
+
+        if (i < fazendoIssues.size()){
+            std::cout << "#" << fazendoIssues[i].getId() << " " << fazendoIssues[i].getTitle() << "\t\t";
         }
         else{
             std::cout << "\t\t";
@@ -514,7 +669,9 @@ void Board::printBoard(){
     }
     std::cout << "======================================================================================" << std::endl;
 }
-
+/**
+ * @brief Função responsável por salvar o board em um arquivo txt, ele salva primeiro o tamanho de cada vector, e após isso salva os dados em sequencia.
+*/
 void Board::salvaBoard(){
     std::ofstream arquivoSaida("quadroPrincipal.txt");
 
@@ -528,6 +685,16 @@ void Board::salvaBoard(){
             arquivoSaida << backlogIssues[i].getDifficult() << "\n";
             arquivoSaida << backlogIssues[i].getDate() << "\n";
             arquivoSaida << backlogIssues[i].getBoard() << "\n";
+        }
+        arquivoSaida << fazendoIssues.size() << "\n";
+        for (int i = 0; i < fazendoIssues.size(); i++){
+            arquivoSaida << fazendoIssues[i].getId() << "\n";
+            arquivoSaida << fazendoIssues[i].getTitle() << "\n";
+            arquivoSaida << fazendoIssues[i].getDescription() << "\n";
+            arquivoSaida << fazendoIssues[i].getPriority() << "\n";
+            arquivoSaida << fazendoIssues[i].getDifficult() << "\n";
+            arquivoSaida << fazendoIssues[i].getDate() << "\n";
+            arquivoSaida << fazendoIssues[i].getBoard() << "\n";
         }
         arquivoSaida << emAnaliseIssues.size() << "\n";
         for (int i = 0; i < emAnaliseIssues.size(); i++){
@@ -575,7 +742,9 @@ void Board::salvaBoard(){
         std::cout << "Não foi possível abrir o arquivo" << std::endl;
     }
 }
-
+/**
+ * @brief Função responsável por carregar o board de um arquivo txt, ele carrega primeiro o tamanho de cada vector, e após isso carrega os dados em sequencia.
+*/
 int Board::carregaBoard(){
     std::ifstream arquivoEntrada("quadroPrincipal.txt");
     int maiorId = 0;
@@ -612,6 +781,9 @@ int Board::carregaBoard(){
                 Issue issue(id, title, description, priority, difficult, date, board);
                 if (board == "Backlog"){
                     backlogIssues.push_back(issue);
+                }
+                if (board == "Fazendo"){
+                    fazendoIssues.push_back(issue);
                 }
                 if (board == "Em Análise"){
                     emAnaliseIssues.push_back(issue);
