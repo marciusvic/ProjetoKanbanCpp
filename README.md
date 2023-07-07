@@ -13,17 +13,24 @@ O programa possui dois algoritimos de ordenação, o primeiro é o algoritimo de
 ### Imagens do projeto
 ##Tela inicial
 ![Tela inicial](./docs/tela%20inicial.png)
+
 ##Menu de opções
 ![Menu de opções](./docs/menu%20principal.png)
+
 ##Criar Issue
 ![Criar Issue](./docs/criar%20Issue.png)
+
 ##Mover Issue
 ![Mover Issue](./docs/mover%20Issue.png)
+
 ##Editar Issue
 ![Editar Issue](./docs/editar%20Issue.png)
+
 ##Apagar Issue
 ![Apagar Issue](./docs/apagar%20Issue.png)
+
 ##Board para visualização das Issues
 ![Board](./docs/board.png)
+
 ##Diagrama UML
 ![Diagrama UML](./docs/uml.png)
