@@ -667,7 +667,7 @@ void Board::printBoard(){
 
         std::cout << std::endl;
     }
-    std::cout << "======================================================================================" << std::endl;
+    std::cout << "=======================================================================================================" << std::endl;
 }
 /**
  * @brief Função responsável por salvar o board em um arquivo txt, ele salva primeiro o tamanho de cada vector, e após isso salva os dados em sequencia.

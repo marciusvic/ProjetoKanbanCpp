@@ -6,3 +6,16 @@ O projeto consiste em um programa que simula um quadro Kanban, onde o usuário p
 
 ### Como compilar e executar o programa
 Para compilar o programa, o usuário deve digitar 'make' no terminal(Linux), caso esteja no windows tente 'mingw32-make'. Para executar o programa.
+
+### Complexidade algoritimos de ordenação
+O programa possui dois algoritimos de ordenação, o primeiro é o algoritimo de ordenação por inserção(insertionSort(std::vector<Issue> &vector, T compareFn) está presente na classe Board), que possui complexidade O(n²)(no pior caso), e o segundo é o algoritimo de ordenação por trocas(bubbleSort(std::vector<Issue> &vector, T compareFn) está presente na classe Board), que possui complexidade O(n²)(no pior caso).
+
+### Imagens do projeto
+![Tela inicial](./docs/tela%20inicial.png)
+![Menu de opções](./docs/menu%20principal.png)
+![Criar Issue](./docs/criar%20Issue.png)
+![Mover Issue](./docs/mover%20Issue.png)
+![Editar Issue](./docs/editar%20Issue.png)
+![Apagar Issue](./docs/apagar%20Issue.png)
+![Board](./docs/board.png)
+![Diagrama UML](./docs/uml.png)
