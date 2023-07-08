@@ -42,3 +42,7 @@ O programa possui dois algoritimos de ordenação, o primeiro é o algoritimo de
 ##Diagrama UML
 
 ![Diagrama UML](./docs/uml.png)
+
+##Video apresentação
+
+[Video apresentação](https://www.youtube.com/watch?v=Fu19LgvNWsI)
