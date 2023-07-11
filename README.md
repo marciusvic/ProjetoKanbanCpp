@@ -10,7 +10,7 @@ O projeto consiste em um programa que simula um quadro Kanban, onde o usuário p
 
 ### Como compilar e executar o programa
 
-Para compilar o programa, o usuário deve digitar 'make' no terminal(Linux), caso esteja no windows tente 'mingw32-make'. Para executar o programa digite './bin/main' no Linux, ou 'main.exe' no Windows.
+Para compilar o programa, o usuário deve digitar 'make' no terminal(Linux), caso esteja no windows tente 'mingw32-make'. Para executar o programa digite './bin/main' no Linux, ou './bin/main.exe' no Windows.
 
 ### Complexidade algoritimos de ordenação
 
